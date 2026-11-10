@@ -1,0 +1,236 @@
+diff -ru '--exclude=__pycache__' /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/config.py prototype/mro_requests/config.py
+--- /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/config.py	2026-11-06 17:35:29.378858600 +0500
++++ prototype/mro_requests/config.py	2026-11-06 17:35:40.149005600 +0500
+@@ -1,37 +1,38 @@
+-"""Configuration: which SLA policy serves which priority, and how the system is wired together.
+-
+-This is the only place that maps a priority code to a policy object.
+-"""
+-
+-from __future__ import annotations
+-
+-from datetime import datetime
+-from typing import Mapping, Optional
+-
+-from .clock import ManualClock
+-from .enums import Priority
+-from .repository import InMemoryRequestRepository, InMemoryUserDirectory, RequestRepository
+-from .service import RequestService
+-from .sla import SlaPolicy, StandardSlaPolicy, UrgentSlaPolicy
+-
+-START_TIME = datetime(2026, 11, 16, 9, 0)
+-
+-
+-def default_policies() -> dict[Priority, SlaPolicy]:
+-    return {
+-        Priority.STANDARD: StandardSlaPolicy(),
+-        Priority.URGENT: UrgentSlaPolicy(),
+-    }
+-
+-
+-def build_service(requests: Optional[RequestRepository] = None,
+-                  policies: Optional[Mapping[Priority, SlaPolicy]] = None) -> tuple[RequestService, ManualClock]:
+-    """Wire the service with in-memory storage. Returns the service and its manual clock."""
+-    clock = ManualClock(START_TIME)
+-    service = RequestService(
+-        requests if requests is not None else InMemoryRequestRepository(),
+-        InMemoryUserDirectory(),
+-        policies if policies is not None else default_policies(),
+-        clock,
+-    )
+-    return service, clock
++"""Configuration: which SLA policy serves which priority, and how the system is wired together.
++
++This is the only place that maps a priority code to a policy object.
++"""
++
++from __future__ import annotations
++
++from datetime import datetime
++from typing import Mapping, Optional
++
++from .clock import ManualClock
++from .enums import Priority
++from .repository import InMemoryRequestRepository, InMemoryUserDirectory, RequestRepository
++from .service import RequestService
++from .sla import AcceleratedSlaPolicy, SlaPolicy, StandardSlaPolicy, UrgentSlaPolicy
++
++START_TIME = datetime(2026, 11, 16, 9, 0)
++
++
++def default_policies() -> dict[Priority, SlaPolicy]:
++    return {
++        Priority.STANDARD: StandardSlaPolicy(),
++        Priority.URGENT: UrgentSlaPolicy(),
++        Priority.ACCELERATED: AcceleratedSlaPolicy(),
++    }
++
++
++def build_service(requests: Optional[RequestRepository] = None,
++                  policies: Optional[Mapping[Priority, SlaPolicy]] = None) -> tuple[RequestService, ManualClock]:
++    """Wire the service with in-memory storage. Returns the service and its manual clock."""
++    clock = ManualClock(START_TIME)
++    service = RequestService(
++        requests if requests is not None else InMemoryRequestRepository(),
++        InMemoryUserDirectory(),
++        policies if policies is not None else default_policies(),
++        clock,
++    )
++    return service, clock
+diff -ru '--exclude=__pycache__' /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/enums.py prototype/mro_requests/enums.py
+--- /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/enums.py	2026-11-06 17:35:29.373599200 +0500
++++ prototype/mro_requests/enums.py	2026-11-06 17:35:40.149005600 +0500
+@@ -1,40 +1,41 @@
+-"""Enumerations of the domain: roles, categories, priorities, states and events."""
+-
+-from enum import Enum
+-
+-
+-class Role(str, Enum):
+-    APPLICANT = "APPLICANT"      # creates and views own requests
+-    DISPATCHER = "DISPATCHER"    # assigns technicians, views load
+-    TECHNICIAN = "TECHNICIAN"    # performs the work
+-
+-
+-class Category(str, Enum):
+-    EQUIPMENT = "EQUIPMENT"      # aircraft equipment: airframe, engines, landing gear
+-    SOFTWARE = "SOFTWARE"        # software of on-board systems
+-
+-
+-class Priority(str, Enum):
+-    STANDARD = "STANDARD"
+-    URGENT = "URGENT"
+-
+-
+-class Status(str, Enum):
+-    DRAFT = "DRAFT"
+-    SUBMITTED = "SUBMITTED"
+-    ASSIGNED = "ASSIGNED"
+-    IN_PROGRESS = "IN_PROGRESS"
+-    COMPLETED = "COMPLETED"
+-    CANCELLED = "CANCELLED"
+-
+-
+-class Event(str, Enum):
+-    SUBMIT = "submit"
+-    CANCEL = "cancel"
+-    ASSIGN = "assign"
+-    START = "start"
+-    COMPLETE = "complete"
+-
+-
+-# A request counts towards the technician's load only in these states (BR-03).
+-ACTIVE_STATUSES = frozenset({Status.ASSIGNED, Status.IN_PROGRESS})
++"""Enumerations of the domain: roles, categories, priorities, states and events."""
++
++from enum import Enum
++
++
++class Role(str, Enum):
++    APPLICANT = "APPLICANT"      # creates and views own requests
++    DISPATCHER = "DISPATCHER"    # assigns technicians, views load
++    TECHNICIAN = "TECHNICIAN"    # performs the work
++
++
++class Category(str, Enum):
++    EQUIPMENT = "EQUIPMENT"      # aircraft equipment: airframe, engines, landing gear
++    SOFTWARE = "SOFTWARE"        # software of on-board systems
++
++
++class Priority(str, Enum):
++    STANDARD = "STANDARD"
++    URGENT = "URGENT"
++    ACCELERATED = "ACCELERATED"
++
++
++class Status(str, Enum):
++    DRAFT = "DRAFT"
++    SUBMITTED = "SUBMITTED"
++    ASSIGNED = "ASSIGNED"
++    IN_PROGRESS = "IN_PROGRESS"
++    COMPLETED = "COMPLETED"
++    CANCELLED = "CANCELLED"
++
++
++class Event(str, Enum):
++    SUBMIT = "submit"
++    CANCEL = "cancel"
++    ASSIGN = "assign"
++    START = "start"
++    COMPLETE = "complete"
++
++
++# A request counts towards the technician's load only in these states (BR-03).
++ACTIVE_STATUSES = frozenset({Status.ASSIGNED, Status.IN_PROGRESS})
+diff -ru '--exclude=__pycache__' /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/sla.py prototype/mro_requests/sla.py
+--- /c/Users/timam/AppData/Local/Temp/claude/94475df79aa3c79a/def92484-775a-4e8a-87bf-d9b62c29376c/scratchpad/base/mro_requests/sla.py	2026-11-06 17:35:29.373599200 +0500
++++ prototype/mro_requests/sla.py	2026-11-06 17:35:40.149005600 +0500
+@@ -1,30 +1,37 @@
+-"""SLA policies: how the due date of a request is calculated.
+-
+-All policies implement one contract (SlaPolicy). ServiceRequest and RequestService
+-only know the contract; the choice of a concrete policy is made in config.py.
+-"""
+-
+-from abc import ABC, abstractmethod
+-from datetime import datetime, timedelta
+-
+-
+-class SlaPolicy(ABC):
+-    """Contract: due date by creation time (calendar hours, no weekends or schedule)."""
+-
+-    @abstractmethod
+-    def calculate_due_at(self, created_at: datetime) -> datetime:
+-        """Return the moment by which the request must be completed."""
+-
+-
+-class StandardSlaPolicy(SlaPolicy):
+-    HOURS = 24
+-
+-    def calculate_due_at(self, created_at: datetime) -> datetime:
+-        return created_at + timedelta(hours=self.HOURS)
+-
+-
+-class UrgentSlaPolicy(SlaPolicy):
+-    HOURS = 4
+-
+-    def calculate_due_at(self, created_at: datetime) -> datetime:
+-        return created_at + timedelta(hours=self.HOURS)
++"""SLA policies: how the due date of a request is calculated.
++
++All policies implement one contract (SlaPolicy). ServiceRequest and RequestService
++only know the contract; the choice of a concrete policy is made in config.py.
++"""
++
++from abc import ABC, abstractmethod
++from datetime import datetime, timedelta
++
++
++class SlaPolicy(ABC):
++    """Contract: due date by creation time (calendar hours, no weekends or schedule)."""
++
++    @abstractmethod
++    def calculate_due_at(self, created_at: datetime) -> datetime:
++        """Return the moment by which the request must be completed."""
++
++
++class StandardSlaPolicy(SlaPolicy):
++    HOURS = 24
++
++    def calculate_due_at(self, created_at: datetime) -> datetime:
++        return created_at + timedelta(hours=self.HOURS)
++
++
++class UrgentSlaPolicy(SlaPolicy):
++    HOURS = 4
++
++    def calculate_due_at(self, created_at: datetime) -> datetime:
++        return created_at + timedelta(hours=self.HOURS)
++
++
++class AcceleratedSlaPolicy(SlaPolicy):
++    HOURS = 8
++
++    def calculate_due_at(self, created_at: datetime) -> datetime:
++        return created_at + timedelta(hours=self.HOURS)
+Only in prototype/tests: test_sla.py

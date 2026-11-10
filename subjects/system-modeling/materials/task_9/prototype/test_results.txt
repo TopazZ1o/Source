@@ -1,0 +1,34 @@
+test_tc03_wrong_role_and_blocked_user_are_denied_and_journaled (tests.test_aircraft_maintenance.AccessTests.test_tc03_wrong_role_and_blocked_user_are_denied_and_journaled) ... ok
+test_tc14_technician_closes_only_own_stage (tests.test_aircraft_maintenance.AccessTests.test_tc14_technician_closes_only_own_stage) ... ok
+test_tc06_control_without_lock_and_constraint_double_books (tests.test_aircraft_maintenance.ConcurrencyTests.test_tc06_control_without_lock_and_constraint_double_books)
+Control test: the domain check alone (check-then-act) is not enough under concurrency. ... ok
+test_tc06_two_planners_book_one_slot_exactly_one_wins (tests.test_aircraft_maintenance.ConcurrencyTests.test_tc06_two_planners_book_one_slot_exactly_one_wins) ... ok
+test_tc07_two_planners_create_request_for_one_aircraft (tests.test_aircraft_maintenance.ConcurrencyTests.test_tc07_two_planners_create_request_for_one_aircraft) ... ok
+test_tc10_busy_resource_request_waits_planner_notified_no_double_booking (tests.test_aircraft_maintenance.ConcurrencyTests.test_tc10_busy_resource_request_waits_planner_notified_no_double_booking) ... ok
+test_tc02_incomplete_request_needs_clarification_and_is_not_planned (tests.test_aircraft_maintenance.DataValidationTests.test_tc02_incomplete_request_needs_clarification_and_is_not_planned) ... ok
+test_tc02_other_invalid_inputs (tests.test_aircraft_maintenance.DataValidationTests.test_tc02_other_invalid_inputs) ... ok
+test_tc05_boundary_values (tests.test_aircraft_maintenance.DataValidationTests.test_tc05_boundary_values) ... ok
+test_tc05_deadline_boundary (tests.test_aircraft_maintenance.DataValidationTests.test_tc05_deadline_boundary) ... ok
+test_tc05_interval_boundaries (tests.test_aircraft_maintenance.DataValidationTests.test_tc05_interval_boundaries) ... ok
+test_restricted_aircraft_is_repaired_and_released (tests.test_aircraft_maintenance.FullCycleTests.test_restricted_aircraft_is_repaired_and_released) ... ok
+test_tc01_normal_cycle_ends_with_release (tests.test_aircraft_maintenance.FullCycleTests.test_tc01_normal_cycle_ends_with_release) ... ok
+test_tc15_conclusion_audit_and_act_are_immutable (tests.test_aircraft_maintenance.ImmutabilityTests.test_tc15_conclusion_audit_and_act_are_immutable) ... ok
+test_tc09_open_critical_defect_blocks_release_but_minor_does_not (tests.test_aircraft_maintenance.ReleaseRuleTests.test_tc09_open_critical_defect_blocks_release_but_minor_does_not) ... ok
+test_tc09_release_denied_without_conclusion_with_list_of_reasons (tests.test_aircraft_maintenance.ReleaseRuleTests.test_tc09_release_denied_without_conclusion_with_list_of_reasons) ... ok
+test_tc13_unfit_conclusion_blocks_and_new_stage_requires_new_conclusion (tests.test_aircraft_maintenance.ReleaseRuleTests.test_tc13_unfit_conclusion_blocks_and_new_stage_requires_new_conclusion) ... ok
+test_cancel_request_frees_resource_and_returns_aircraft_to_ready (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_cancel_request_frees_resource_and_returns_aircraft_to_ready) ... ok
+test_second_channel_can_replace_the_first (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_second_channel_can_replace_the_first) ... ok
+test_tc07_repeated_request_is_idempotent (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_tc07_repeated_request_is_idempotent) ... ok
+test_tc08_booking_is_atomic_for_several_resources (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_tc08_booking_is_atomic_for_several_resources) ... ok
+test_tc08_storage_failure_during_release_rolls_everything_back (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_tc08_storage_failure_during_release_rolls_everything_back) ... ok
+test_tc12_notification_failure_does_not_undo_release (tests.test_aircraft_maintenance.RepeatAndFailureTests.test_tc12_notification_failure_does_not_undo_release) ... ok
+test_request_completed_cannot_be_rescheduled (tests.test_aircraft_maintenance.TransitionTests.test_request_completed_cannot_be_rescheduled) ... ok
+test_tc04_forbidden_aircraft_transitions (tests.test_aircraft_maintenance.TransitionTests.test_tc04_forbidden_aircraft_transitions) ... ok
+test_tc04_release_of_aircraft_not_in_maintenance_is_denied (tests.test_aircraft_maintenance.TransitionTests.test_tc04_release_of_aircraft_not_in_maintenance_is_denied) ... ok
+test_tc11_write_off_closes_open_work_and_frees_resources (tests.test_aircraft_maintenance.WriteOffTests.test_tc11_write_off_closes_open_work_and_frees_resources) ... ok
+test_tc11_write_off_requires_reason_and_document (tests.test_aircraft_maintenance.WriteOffTests.test_tc11_write_off_requires_reason_and_document) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.061s
+
+OK

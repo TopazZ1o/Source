@@ -1,0 +1,81 @@
+
+=== 1. Исходное состояние (загружено операциями сервиса) ===
+  Заявка Влад. Категория  Приор.    Состояние    Спец. Пункты  Срок
+  SR01   U01   EQUIPMENT  STANDARD  SUBMITTED    -     0/2     17.11.2026 09:00
+  SR02   U02   SOFTWARE   URGENT    SUBMITTED    -     0/2     16.11.2026 13:30
+  SR03   U01   EQUIPMENT  STANDARD  DRAFT        -     0/0     17.11.2026 09:45
+  SR04   U02   EQUIPMENT  STANDARD  IN_PROGRESS  T01   0/2     17.11.2026 10:00
+  Активная нагрузка: T01 = 1, T02 = 0
+> U02: история SR04
+  16.11.2026 10:00  (создание) -> DRAFT  [U02]
+  16.11.2026 10:06  DRAFT -> SUBMITTED  [U02]
+  16.11.2026 10:15  SUBMITTED -> ASSIGNED  [U03]
+  16.11.2026 10:30  ASSIGNED -> IN_PROGRESS  [U04]
+
+=== 2. Сроки завершения: одна операция calculate_due_at, две политики ===
+  SR01 (STANDARD): создана 16.11.2026 09:00 + 24 ч = 17.11.2026 09:00
+  SR02 (URGENT): создана 16.11.2026 09:30 + 4 ч = 16.11.2026 13:30
+  Разница: политика выбирается по приоритету в конфигурации; ServiceRequest получает объект политики.
+
+=== 3. Корректная операция: диспетчер назначает SR01 специалисту T01 ===
+> U03: назначить SR01 специалисту T01
+  OK: SR01 -> ASSIGNED
+  Активная нагрузка: T01 = 2, T02 = 0
+
+=== 4. Отклоняемая операция: SR02 (ПО) назначается специалисту T01 (только оборудование) ===
+> U03: назначить SR02 специалисту T01
+  ОТКАЗ [SKILL_MISMATCH] technician T01 does not serve SOFTWARE
+  Заявка Влад. Категория  Приор.    Состояние    Спец. Пункты  Срок
+  SR01   U01   EQUIPMENT  STANDARD  ASSIGNED     T01   0/2     17.11.2026 09:00
+  SR02   U02   SOFTWARE   URGENT    SUBMITTED    -     0/2     16.11.2026 13:30
+  SR03   U01   EQUIPMENT  STANDARD  DRAFT        -     0/0     17.11.2026 09:45
+  SR04   U02   EQUIPMENT  STANDARD  IN_PROGRESS  T01   0/2     17.11.2026 10:00
+  Активная нагрузка: T01 = 2, T02 = 0
+
+=== 5. Основной сценарий SR01: от начала работы до завершения ===
+> U05: начать работу над SR01
+  ОТКАЗ [FORBIDDEN] U05 is not the assigned technician of SR01
+> U04: начать работу над SR01
+  OK: SR01 -> IN_PROGRESS
+> U04: завершить SR01
+  ОТКАЗ [WORK_INCOMPLETE] not all work items are done
+> U04: выполнить пункт SR01-W1
+  OK: SR01-W1
+> U04: выполнить пункт SR01-W2
+  OK: SR01-W2
+> U04: завершить SR01
+  OK: SR01 -> COMPLETED
+> U04: завершить SR01
+  ОТКАЗ [INVALID_STATE] event 'complete' is not allowed in state COMPLETED
+  Активная нагрузка: T01 = 1, T02 = 0
+> U01: история SR01
+  16.11.2026 09:00  (создание) -> DRAFT  [U01]
+  16.11.2026 09:06  DRAFT -> SUBMITTED  [U01]
+  16.11.2026 11:05  SUBMITTED -> ASSIGNED  [U03]
+  16.11.2026 11:20  ASSIGNED -> IN_PROGRESS  [U04]
+  16.11.2026 13:00  IN_PROGRESS -> COMPLETED  [U04]
+
+=== 6. Отправка пустой заявки SR03 и отмена ===
+> U01: отправить SR03
+  ОТКАЗ [EMPTY_ITEMS] a request without work items cannot be submitted
+> U01: добавить пункт в SR03
+  OK: SR03-W1
+> U01: отправить SR03
+  OK: SR03 -> SUBMITTED
+> U02: отменить SR03
+  ОТКАЗ [FORBIDDEN] U02 is not the owner of SR03
+> U01: отменить SR03
+  OK: SR03 -> CANCELLED
+> U01: история SR03
+  16.11.2026 09:45  (создание) -> DRAFT  [U01]
+  16.11.2026 13:00  DRAFT -> SUBMITTED  [U01]
+  16.11.2026 13:00  SUBMITTED -> CANCELLED  [U01]
+
+=== 7. Смена политики срока: тот же контракт, другой объект ===
+  StandardSlaPolicy    16.11.2026 09:00 -> 17.11.2026 09:00
+  UrgentSlaPolicy      16.11.2026 09:00 -> 16.11.2026 13:00
+  AcceleratedSlaPolicy 16.11.2026 09:00 -> 16.11.2026 17:00
+  Конфигурация STANDARD -> UrgentSlaPolicy: срок SR01 стал 16.11.2026 13:00 (было 17.11.2026 09:00); код ServiceRequest не менялся.
+
+=== 8. Смена способа хранения: те же операции над другим репозиторием ===
+  Результат одинаков в InMemoryRequestRepository и CopyOnSaveRequestRepository: True

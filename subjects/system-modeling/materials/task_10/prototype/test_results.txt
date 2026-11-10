@@ -1,0 +1,53 @@
+test_tc22_batch_without_certificate_goes_to_quarantine (tests.test_inventory.TestAirworthiness.test_tc22_batch_without_certificate_goes_to_quarantine)
+TC-22: партия без сертификата годности принимается в карантин; снять его может только руководитель с номером. ... ok
+test_tc23_reservation_requires_work_order (tests.test_inventory.TestAirworthiness.test_tc23_reservation_requires_work_order)
+TC-23: резерв без заказ-наряда или с неверным форматом отклоняется, данные не меняются. ... ok
+test_tc01_register_item_and_duplicate_sku (tests.test_inventory.TestBasics.test_tc01_register_item_and_duplicate_sku)
+TC-01: номенклатура регистрируется; повтор P/N и неверный P/N отклоняются. ... ok
+test_tc02_receipt_updates_stock_and_history (tests.test_inventory.TestBasics.test_tc02_receipt_updates_stock_and_history)
+TC-02: приход увеличивает остаток и доступное, в истории одно движение RECEIPT. ... ok
+test_tc03_unit_conversion (tests.test_inventory.TestBasics.test_tc03_unit_conversion)
+TC-03: 2 упаковки по 10 принимаются как 20 штук; неизвестная единица отклоняется. ... ok
+test_tc04_repeated_document (tests.test_inventory.TestBasics.test_tc04_repeated_document)
+TC-04: повторная обработка того же документа не меняет остаток. ... ok
+test_control_naive_reserve_oversells (tests.test_inventory.TestControlWithoutTransaction.test_control_naive_reserve_oversells)
+Контроль: проверка и запись раздельно, без транзакции и без CHECK, дают резерв 16 при остатке 10. ... ok
+test_tc17_rollback_on_failure (tests.test_inventory.TestIntegrity.test_tc17_rollback_on_failure)
+TC-17: сбой в середине операции откатывает всё: приход с неверной второй строкой и сбой при резерве. ... ok
+test_tc18_stored_balance_equals_movements (tests.test_inventory.TestIntegrity.test_tc18_stored_balance_equals_movements)
+TC-18: после серии операций хранимый остаток и резерв равны сумме движений и активных резервов. ... ok
+test_tc19_movement_log_is_append_only (tests.test_inventory.TestIntegrity.test_tc19_movement_log_is_append_only)
+TC-19: журнал движений нельзя изменить или удалить средствами СУБД (триггеры). ... ok
+test_tc20_db_constraint_is_last_line_of_defence (tests.test_inventory.TestIntegrity.test_tc20_db_constraint_is_last_line_of_defence)
+TC-20: даже прямая запись в СУБД не может сделать резерв больше остатка. ... ok
+test_tc21_unknown_item_and_user (tests.test_inventory.TestIntegrity.test_tc21_unknown_item_and_user)
+TC-21: неизвестная номенклатура и неизвестный пользователь отклоняются. ... ok
+test_tc12_quarantined_batch (tests.test_inventory.TestQuality.test_tc12_quarantined_batch)
+TC-12: партия в карантине не попадает в доступное; выдача из неё запрещена. ... ok
+test_tc13_expired_batch (tests.test_inventory.TestQuality.test_tc13_expired_batch)
+TC-13: просроченная партия не резервируется; резерв, выданный до срока, нельзя выдать после него. ... ok
+test_tc14_fefo_allocation (tests.test_inventory.TestQuality.test_tc14_fefo_allocation)
+TC-14: резерв берёт сначала партию с ближайшим сроком годности и может охватить две партии. ... ok
+test_tc15_reverse_confirmed_receipt (tests.test_inventory.TestQuality.test_tc15_reverse_confirmed_receipt)
+TC-15: ошибочный приход исправляется встречным движением; при резерве части товара сторно запрещено. ... ok
+test_tc16_serial_numbers (tests.test_inventory.TestQuality.test_tc16_serial_numbers)
+TC-16: серийная позиция принимается только с уникальными корректными S/N; выдача называет S/N. ... ok
+test_tc05_reserve_within_available (tests.test_inventory.TestReservation.test_tc05_reserve_within_available)
+TC-05: резерв в пределах доступного уменьшает доступное, остаток не меняется. ... ok
+test_tc06_insufficient_stock (tests.test_inventory.TestReservation.test_tc06_insufficient_stock)
+TC-06: запрос больше доступного отклоняется с указанием доступного; состояние не меняется. ... ok
+test_tc07_repeated_request (tests.test_inventory.TestReservation.test_tc07_repeated_request)
+TC-07: повтор запроса с тем же ключом даёт тот же резерв; другие данные под тем же ключом – конфликт. ... ok
+test_tc08_parallel_reservation (tests.test_inventory.TestReservation.test_tc08_parallel_reservation)
+TC-08: два одновременных резерва по 8 из 10 (20 повторов): всегда ровно один успех, резерв 8. ... ok
+test_tc09_unauthorized_actions (tests.test_inventory.TestReservation.test_tc09_unauthorized_actions)
+TC-09: действия не по роли (в т. ч. техника) отклоняются, данные не меняются; чужой резерв снимает только руководитель. ... ok
+test_tc10_issue_reserved (tests.test_inventory.TestReservation.test_tc10_issue_reserved)
+TC-10: выдача по резерву уменьшает остаток и резерв; повторная выдача запрещена. ... ok
+test_tc11_release_restores_availability (tests.test_inventory.TestReservation.test_tc11_release_restores_availability)
+TC-11: снятие резерва возвращает доступное; повторное снятие запрещено. ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 7.009s
+
+OK

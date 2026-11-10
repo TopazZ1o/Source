@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram name="Architecture" id="architecture">
+    <mxGraphModel dx="2583" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ui" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Уровень 1. Пользовательский интерфейс&amp;#xa;Веб-клиент: карточка ВС, календарь обслуживания,&amp;#xa;заказ-наряд, отчёты и уведомления" vertex="1">
+          <mxGeometry height="105" width="500" x="330" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;" value="Защищённый API / прикладной уровень" vertex="1">
+          <mxGeometry height="55" width="500" x="330" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Реестр воздушных судов" vertex="1">
+          <mxGeometry height="75" width="175" x="-20" y="285" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Планирование и запись" vertex="1">
+          <mxGeometry height="75" width="175" x="180" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Заказ-наряды и ремонт" vertex="1">
+          <mxGeometry height="75" width="175" x="490" y="305" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Контроль сроков и уведомления" vertex="1">
+          <mxGeometry height="75" width="175" x="780" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Проверка допуска и списание" vertex="1">
+          <mxGeometry height="75" width="175" x="980" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Аутентификация, роли и аудит" vertex="1">
+          <mxGeometry height="75" width="175" x="110" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=11;" value="Отчёты и история" vertex="1">
+          <mxGeometry height="75" width="175" x="880" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fontSize=12;" value="Уровень 3. Реляционная база данных&amp;#xa;Воздушные суда • заявки • заказ-наряды • этапы&amp;#xa;дефекты • сотрудники • запчасти • заключения • акты списания • аудит" vertex="1">
+          <mxGeometry height="100" width="600" x="280" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="tos1" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos2" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos3" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos4" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos5" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos6" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tos7" edge="1" parent="1" source="api" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="s7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eui" edge="1" parent="1" source="ui" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="api" value="HTTPS / запросы">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs1" edge="1" parent="1" source="s1" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs2" edge="1" parent="1" source="s2" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs3" edge="1" parent="1" source="s3" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs4" edge="1" parent="1" source="s4" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs5" edge="1" parent="1" source="s5" style="endArrow=none;html=1;rounded=0;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs6" edge="1" parent="1" source="s6" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dbs7" edge="1" parent="1" source="s7" style="endArrow=none;html=1;rounded=0;strokeColor=#666666;fontSize=10;" target="db" value="чтение / запись">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rule" parent="1" style="shape=note;whiteSpace=wrap;html=1;fontSize=11;align=center;" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Ключевое правило: сервис допуска проверяет обязательные работы и заключение; сервис списания доступен только уполномоченной роли. Все критические операции записываются в аудит.&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="65" width="450" x="360" y="700" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

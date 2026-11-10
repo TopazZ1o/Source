@@ -1,0 +1,49 @@
+test_items_and_history_are_immutable_views (tests.test_design.Encapsulation.test_items_and_history_are_immutable_views) ... ok
+test_request_does_not_branch_on_policy_kind (tests.test_design.Encapsulation.test_request_does_not_branch_on_policy_kind) ... ok
+test_state_cannot_be_assigned_from_outside (tests.test_design.Encapsulation.test_state_cannot_be_assigned_from_outside) ... ok
+test_assign_order_of_checks (tests.test_design.RulesAndOrder.test_assign_order_of_checks) ... ok
+test_every_error_uses_a_declared_code (tests.test_design.RulesAndOrder.test_every_error_uses_a_declared_code) ... ok
+test_final_states_stay_final (tests.test_design.RulesAndOrder.test_final_states_stay_final) ... ok
+test_history_visibility (tests.test_design.RulesAndOrder.test_history_visibility) ... ok
+test_items_are_frozen_after_submit (tests.test_design.RulesAndOrder.test_items_are_frozen_after_submit) ... ok
+test_load_equals_value_computed_from_requests (tests.test_design.RulesAndOrder.test_load_equals_value_computed_from_requests) ... ok
+test_technician_profile_constraints (tests.test_design.RulesAndOrder.test_technician_profile_constraints) ... ok
+test_transitions_outside_the_table_are_rejected (tests.test_design.RulesAndOrder.test_transitions_outside_the_table_are_rejected) ... ok
+test_work_items_follow_the_state_rules (tests.test_design.RulesAndOrder.test_work_items_follow_the_state_rules) ... ok
+test_same_scenario_gives_same_data_in_both_repositories (tests.test_design.StorageSwap.test_same_scenario_gives_same_data_in_both_repositories) ... ok
+test_initial_states_match_the_task (tests.test_design.TrainingData.test_initial_states_match_the_task) ... ok
+test_item_codes_are_unique (tests.test_design.TrainingData.test_item_codes_are_unique) ... ok
+test_loading_twice_gives_the_same_data (tests.test_design.TrainingData.test_loading_twice_gives_the_same_data) ... ok
+test_sr04_history_explains_its_state (tests.test_design.TrainingData.test_sr04_history_explains_its_state) ... ok
+test_tc01_empty_submit (tests.test_scenarios.ChainA.test_tc01_empty_submit) ... ok
+test_tc02_add_item_and_submit (tests.test_scenarios.ChainA.test_tc02_add_item_and_submit) ... ok
+test_tc01_empty_submit (tests.test_scenarios.ChainACopy.test_tc01_empty_submit) ... ok
+test_tc02_add_item_and_submit (tests.test_scenarios.ChainACopy.test_tc02_add_item_and_submit) ... ok
+test_tc03_assign_sr01_to_t01 (tests.test_scenarios.ChainB.test_tc03_assign_sr01_to_t01) ... ok
+test_tc04_skill_mismatch (tests.test_scenarios.ChainB.test_tc04_skill_mismatch) ... ok
+test_tc05_assign_sr02_to_t02 (tests.test_scenarios.ChainB.test_tc05_assign_sr02_to_t02) ... ok
+test_tc06_start_by_wrong_technician (tests.test_scenarios.ChainB.test_tc06_start_by_wrong_technician) ... ok
+test_tc07_start_by_assigned_technician (tests.test_scenarios.ChainB.test_tc07_start_by_assigned_technician) ... ok
+test_tc08_complete_with_open_items (tests.test_scenarios.ChainB.test_tc08_complete_with_open_items) ... ok
+test_tc09_complete_and_repeat (tests.test_scenarios.ChainB.test_tc09_complete_and_repeat) ... ok
+test_tc03_assign_sr01_to_t01 (tests.test_scenarios.ChainBCopy.test_tc03_assign_sr01_to_t01) ... ok
+test_tc04_skill_mismatch (tests.test_scenarios.ChainBCopy.test_tc04_skill_mismatch) ... ok
+test_tc05_assign_sr02_to_t02 (tests.test_scenarios.ChainBCopy.test_tc05_assign_sr02_to_t02) ... ok
+test_tc06_start_by_wrong_technician (tests.test_scenarios.ChainBCopy.test_tc06_start_by_wrong_technician) ... ok
+test_tc07_start_by_assigned_technician (tests.test_scenarios.ChainBCopy.test_tc07_start_by_assigned_technician) ... ok
+test_tc08_complete_with_open_items (tests.test_scenarios.ChainBCopy.test_tc08_complete_with_open_items) ... ok
+test_tc09_complete_and_repeat (tests.test_scenarios.ChainBCopy.test_tc09_complete_and_repeat) ... ok
+test_tc10_cancel_by_stranger_then_owner (tests.test_scenarios.Independent.test_tc10_cancel_by_stranger_then_owner) ... ok
+test_tc11_load_limit (tests.test_scenarios.Independent.test_tc11_load_limit) ... ok
+test_tc12_two_policies_one_contract (tests.test_scenarios.Independent.test_tc12_two_policies_one_contract) ... ok
+test_tc10_cancel_by_stranger_then_owner (tests.test_scenarios.IndependentCopy.test_tc10_cancel_by_stranger_then_owner) ... ok
+test_tc11_load_limit (tests.test_scenarios.IndependentCopy.test_tc11_load_limit) ... ok
+test_tc12_two_policies_one_contract (tests.test_scenarios.IndependentCopy.test_tc12_two_policies_one_contract) ... ok
+test_accelerated_priority_gives_eight_hours_in_a_real_request (tests.test_sla.SlaPolicies.test_accelerated_priority_gives_eight_hours_in_a_real_request) ... ok
+test_all_policies_work_through_one_contract (tests.test_sla.SlaPolicies.test_all_policies_work_through_one_contract) ... ok
+test_every_priority_has_a_policy (tests.test_sla.SlaPolicies.test_every_priority_has_a_policy) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 0.047s
+
+OK

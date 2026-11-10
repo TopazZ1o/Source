@@ -1,0 +1,10 @@
+T01  ключ=IN01      RECEIVE  OK                         до: OH=500 R=120 A=350     после: OH=540 R=120 A=390
+T02  ключ=RES01     RESERVE  OK                         до: OH=500 R=120 A=350     после: OH=500 R=180 A=290
+T03  ключ=RES01     RESERVE  OK (повтор)                до: OH=500 R=120 A=350     после: OH=500 R=180 A=290
+T04  ключ=RES01     RESERVE  CONFLICT                   до: -                      после: -
+T05  ключ=RES02     RESERVE  INSUFFICIENT_STOCK         до: OH=500 R=120 A=350     после: без изменений
+T06  ключ=OUT01     ISSUE    OK                         до: OH=500 R=180 A=290     после: OH=480 R=160 A=290
+T07  ключ=CANCEL01  RELEASE  OK                         до: OH=480 R=160 A=290     после: OH=480 R=120 A=330
+T08  ключ=T-RES-3    RESERVE  OK                  до: A=12  после: A=7   старт +0.03 мс, конец +30.8 мс
+T08  ключ=T-RES-1    RESERVE  OK                  до: A=7   после: A=2   старт +0.14 мс, конец +73.2 мс
+T08  ключ=T-RES-2    RESERVE  INSUFFICIENT_STOCK  до: A=2   после: A=2   старт +0.36 мс, конец +101.7 мс

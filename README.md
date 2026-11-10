@@ -35,24 +35,26 @@ subjects/
     README.md                       сведения о предмете, список заданий и статусы
     lectures/raw, lectures/md       лекции: исходники и Markdown
     notes/raw, notes/md             конспекты: исходники и Markdown
-    materials/                      литература и прочее
-    assignments/NN-short-name/
-      task/                         условие задания (исходник и md)
-      work.md                       выполненная работа – источник истины
-      assets/                       рисунки, диаграммы
-      output/NN-short-name.docx     собирается из work.md
+    materials/                      условия заданий (task_*.md), литература и прочее; выполненные работы сюда не кладутся
+    assignments/                    только выполненные задания
+      NN-short-name/
+        work.md                     выполненная работа – источник истины
+        assets/                     рисунки, диаграммы и их редактируемые исходники
+        prototype/, results/ ...    код, данные, результаты запусков (если задание их требует)
+        tools/                      скрипты, нужные только этому заданию
+        output/NN-short-name.docx   собирается из work.md
 ```
 
 Имена папок и файлов – латиницей, содержимое – на русском.
 
 ## Рабочий процесс
 
-1. Положить исходники в `lectures/raw`, `notes/raw` или `assignments/NN-name/task`.
+1. Положить исходники в `lectures/raw`, `notes/raw`; условия заданий – в `materials/`.
 2. Конвертировать в Markdown (файлы из папки `raw` попадают в соседнюю `md`):
    ```
    python tools/convert_to_md.py subjects/system-modeling/lectures/raw
    ```
-3. Создать задание: папку `assignments/NN-short-name/` и в ней `work.md` на основе `tools/templates/work.md`.
+3. Создать выполненное задание: папку `assignments/NN-short-name/` и в ней `work.md` на основе `tools/templates/work.md`. Условие остаётся в `materials/`.
 4. Собрать docx:
    ```
    python tools/build_docx.py subjects/system-modeling/assignments/01-short-name/work.md

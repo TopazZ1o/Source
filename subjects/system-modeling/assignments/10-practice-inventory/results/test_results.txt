@@ -1,0 +1,24 @@
+test_t12_sql_constraints (tests.test_inventory.Integrity.test_t12_sql_constraints) ... ok
+test_t13_consistency_of_journal_and_balance (tests.test_inventory.Integrity.test_t13_consistency_of_journal_and_balance) ... ok
+test_t14_invalid_quantities_and_roles (tests.test_inventory.Integrity.test_t14_invalid_quantities_and_roles) ... ok
+test_t15_busy_database_is_technical_error (tests.test_inventory.Integrity.test_t15_busy_database_is_technical_error) ... ok
+test_t16_available_unchanged_after_issue (tests.test_inventory.Integrity.test_t16_available_unchanged_after_issue) ... ok
+test_t18_initial_state (tests.test_inventory.Integrity.test_t18_initial_state) ... ok
+test_t19_failure_before_commit_rolls_back (tests.test_inventory.Integrity.test_t19_failure_before_commit_rolls_back) ... ok
+test_t01_receive_increases_stock_once (tests.test_inventory.Operations.test_t01_receive_increases_stock_once) ... ok
+test_t02_reserve_available_quantity (tests.test_inventory.Operations.test_t02_reserve_available_quantity) ... ok
+test_t03_repeat_creates_no_duplicate (tests.test_inventory.Operations.test_t03_repeat_creates_no_duplicate) ... ok
+test_t04_same_key_other_quantity_conflict (tests.test_inventory.Operations.test_t04_same_key_other_quantity_conflict) ... ok
+test_t05_insufficient_stock_changes_nothing (tests.test_inventory.Operations.test_t05_insufficient_stock_changes_nothing) ... ok
+test_t06_issue_reduces_oh_and_r_equally (tests.test_inventory.Operations.test_t06_issue_reduces_oh_and_r_equally) ... ok
+test_t07_release_keeps_oh (tests.test_inventory.Operations.test_t07_release_keeps_oh) ... ok
+test_t08_three_parallel_reservations (tests.test_inventory.Parallel.test_t08_three_parallel_reservations) ... ok
+test_t09_indicators (tests.test_inventory.Planning.test_t09_indicators) ... ok
+test_t10_lot_is_multiple_of_pack_and_cheaper (tests.test_inventory.Planning.test_t10_lot_is_multiple_of_pack_and_cheaper) ... ok
+test_t11_report_does_not_change_the_database (tests.test_inventory.Planning.test_t11_report_does_not_change_the_database) ... ok
+test_t17_lead_time_scenario (tests.test_inventory.Planning.test_t17_lead_time_scenario) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 4.644s
+
+OK
