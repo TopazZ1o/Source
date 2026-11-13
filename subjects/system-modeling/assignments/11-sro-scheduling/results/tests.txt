@@ -1,0 +1,18 @@
+test_01_incompatible_resource (test_scheduling.Checks.test_01_incompatible_resource) ... ok
+test_02_overlap (test_scheduling.Checks.test_02_overlap) ... ok
+test_03_end_equals_start_is_allowed (test_scheduling.Checks.test_03_end_equals_start_is_allowed) ... ok
+test_04_r3_unavailable_all_shift (test_scheduling.Checks.test_04_r3_unavailable_all_shift) ... ok
+test_05_calendar_edges (test_scheduling.Checks.test_05_calendar_edges) ... ok
+test_06_windows (test_scheduling.Checks.test_06_windows) ... ok
+test_07_mandatory_not_postponed (test_scheduling.Checks.test_07_mandatory_not_postponed) ... ok
+test_08_optimum_matches_exhaustive_search (test_scheduling.Checks.test_08_optimum_matches_exhaustive_search) ... ok
+test_09_greedy_is_valid_and_worse (test_scheduling.Checks.test_09_greedy_is_valid_and_worse) ... ok
+test_10_deterministic (test_scheduling.Checks.test_10_deterministic) ... ok
+test_11_urgent_job_only_r2_at_12 (test_scheduling.Checks.test_11_urgent_job_only_r2_at_12) ... ok
+test_12_revalidation_after_calendar_change (test_scheduling.Checks.test_12_revalidation_after_calendar_change) ... ok
+test_13_counts_and_totals (test_scheduling.Checks.test_13_counts_and_totals) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.012s
+
+OK

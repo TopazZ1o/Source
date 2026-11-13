@@ -1,3 +1,4 @@
 markitdown[pdf,docx,pptx]
 pypandoc_binary
 python-docx
+openpyxl
